@@ -115,13 +115,23 @@ namespace MimeKit.Cryptography {
 		public bool IsTrusted { get; set; }
 
 		/// <summary>
+		/// Gets or sets a value indicating whether the certificate is the trust anchor.
+		/// </summary>
+		/// <remarks>
+		/// Indicates whether the certificate is considered the trust anchor.
+		/// </remarks>
+		/// <value><c>true</c> if the certificate is trusted; otherwise, <c>false</c>.</value>
+		public bool IsTrustedAnchor { get; set; }
+
+		/// <summary>
 		/// Gets whether the certificate is an anchor.
 		/// </summary>
 		/// <remarks>
 		/// Gets whether the certificate is an anchor.
 		/// </remarks>
 		/// <value><c>true</c> if the certificate is an anchor; otherwise, <c>false</c>.</value>
-		public bool IsAnchor { get { return Certificate.IsSelfSigned (); } }
+		public bool IsAnchor { get { return IsTrustedAnchor || Certificate.IsSelfSigned (); } }
+
 
 		/// <summary>
 		/// Gets the key usage flags for the certificate.
